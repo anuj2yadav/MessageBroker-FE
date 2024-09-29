@@ -5,6 +5,7 @@ import KafkaPublication from './components/KafkaComponents/kafka';
 import RabbitMq from './components/rabbitMq/rabbitMq';
 import Header from './components/Headers/header';
 import Home from './components/Headers/home';
+import IBMMQ from './components/IbmMq/ibmMq';
 
 
  
@@ -20,6 +21,7 @@ function App() {
     <Route path="kafka" element={<KafkaPublication/>}/>
         
     <Route path="rabbitMq" element={<RabbitMq/>}/>
+    <Route path="ibmMQ" element={<IBMMQ/>}/>
     
     </Route>
    </Routes>
