@@ -30,10 +30,16 @@ const Header = () => {
             <Link to="ibmMQ" className="nav-item nav-link">
               IBM MQ Publication
             </Link>
+            
           </div>
+          
         </div>
+        <div  className=" justify-content-end text-white mr-4 px-3">
+              Env:{process.env.NODE_ENV}
+            </div>
       </nav>
-      <Outlet />
+       {/* <section > */}
+      <Outlet cclassName="vh-100 gradient-custom mt-0"/>
     </>
   );
 };
