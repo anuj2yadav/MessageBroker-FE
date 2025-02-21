@@ -4,8 +4,8 @@ import { Outlet, Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <Link className="navbar-brand" to="home">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark mt-0" >
+        <Link className="navbar-brand ms-3" to="home">
           Message Publication
         </Link>
         <button
@@ -35,7 +35,7 @@ const Header = () => {
           
         </div>
         <div  className=" justify-content-end text-white mr-4 px-3">
-              Env:{process.env.NODE_ENV}
+              Env:{process.env.REACT_APP_ENV}
             </div>
       </nav>
        {/* <section > */}

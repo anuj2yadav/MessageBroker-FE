@@ -3,7 +3,7 @@ import { MDBInput } from "mdb-react-ui-kit";
 
 const LoginNew=()=>{
     return<>
-       <section className="vh-100 gradient-custom mt-0">
+       <section className="h-100 gradient-custom mt-0.5">
         <div class="container py-5 h-10">
             <div className="row d-flex justify-content-center align-item-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
