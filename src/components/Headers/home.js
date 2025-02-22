@@ -1,6 +1,6 @@
 import { GoogleLogin } from "@react-oauth/google";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -11,6 +11,7 @@ const Home = () => {
   const [password, setPassword] = useState("");
   const [isPublished,setIsPublished]=useState(false);
   const navigate=useNavigate();
+
 
   const changeInputTypePassword = (event) => {
     event.preventDefault();
@@ -26,20 +27,35 @@ const Home = () => {
   const handlePassword=(event)=>{
     setPassword(event.target.value)
   }
-  const handleSuccess = (response) => {
+  const handleLogin=(e)=>{
+    e.preventDefault();
+    navigate("\kafka")
+    localStorage.setItem("oauthToken","response");
+
+  }
+  function  handleSuccess(response){
     console.log('Success:', response);
     // Send the token to your backend for verification
-    localStorage.setItem("oauthToken",response.credential);
-     navigate('/kafka')
+    localStorage.setItem("oauthToken",response);
+    navigate('/kafka')
     console.log(response);
   };
 
   const handleError = () => {
     console.log('Login Failed');
   };
+  useEffect(()=>{
+    console.log("hello");
+    if(localStorage.getItem("oauthToken") ){
+      navigate('/kafka');
+      console.log("hell0");
+    }
+  },[])
+  
 
   return (
     <>
+
       <div className="d-flex justify-content-center align-items-center min-vh-100">
         <form className="border" style={{borderRadius:"8%"}}>
             <br/>
@@ -85,7 +101,7 @@ const Home = () => {
           </div>
           <br />
           <div className="form-group row">
-            <button className="btn btn-primary col-md-3 offset-md-4 btn-sm">Login</button>
+            <button className="btn btn-primary col-md-3 offset-md-4 btn-sm" onClick={handleLogin}>Login</button>
             <button className="btn btn-danger col-md-3 offset-md-1 btn-sm">
               Cancel
             </button>

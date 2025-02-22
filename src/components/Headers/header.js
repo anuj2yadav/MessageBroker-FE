@@ -1,10 +1,25 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 const Header = () => {
+  //const [isLogin ,setIsLogin]=useState(false);
+  let isLogin = false;
+  if (localStorage.getItem("oauthToken")) isLogin = true;
+  const handleLogout=(e)=>{
+    e.preventDefault();
+    localStorage.setItem("oauthToken","");
+    isLogin=false;
+    window.location.reload()
+  }
+  useEffect(()=>{
+    if (localStorage.getItem("oauthToken")) isLogin = true;
+  },[])
+  
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark mt-0" >
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark mt-0 sticky-top overflow-hidden">
+      <div class="container-fluid">
         <Link className="navbar-brand ms-3" to="home">
           Message Publication
         </Link>
@@ -31,15 +46,25 @@ const Header = () => {
               IBM MQ Publication
             </Link>
             
+           
           </div>
-          
+          {isLogin && (
+              <div className="ms-auto">
+          <button onClick={handleLogout} className=" btn btn-danger ">
+            Logout
+          </button>
+          </div>
+        )}
         </div>
-        <div  className=" justify-content-end text-white mr-4 px-3">
+       
+        {/* <div  className=" justify-content-end text-white mr-4 px-3">
               Env:{process.env.REACT_APP_ENV}
+            </div> */}
+            
             </div>
       </nav>
-       {/* <section > */}
-      <Outlet cclassName="vh-100 gradient-custom mt-0"/>
+      {/* <section > */}
+      <Outlet className="vh-100 gradient-custom mt-0" />
     </>
   );
 };

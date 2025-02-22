@@ -11,7 +11,6 @@ import ProtectedRoutes from "./components/Headers/protectedRouter";
 import ProtectedLayout from "./components/Headers/protectedLayout";
 import LoginNew from "./components/loginComp";
 
-
 function App() {
   return (
     <>
@@ -23,27 +22,14 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Header />}>
-              {/* <Route index element={<Home />} /> */}
+              <Route index element={<LoginNew />} />
               <Route path="home" element={<LoginNew />} />
-              <Route element={<ProtectedRoutes/>}>
-              <Route
-                path="kafka"
-                element={
-                  
-                    <KafkaPublication />
-                
-                }
-              />
-               
-              <Route path="rabbitMq" element={<RabbitMq />} />
-              <Route path="ibmMQ" element={<IBMMQ />} />
-              
-              
+              <Route element={<ProtectedRoutes />}>
+                <Route path="kafka" element={<KafkaPublication />} />
+
+                <Route path="rabbitMq" element={<RabbitMq />} />
+                <Route path="ibmMQ" element={<IBMMQ />} />
               </Route>
-
-
-
-              
             </Route>
           </Routes>
         </BrowserRouter>
